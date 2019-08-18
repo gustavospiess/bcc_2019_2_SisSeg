@@ -1,6 +1,47 @@
 # Execício 02
 
-## Item 1
+## Sobre a implementação:
+Os itens do trabalho foram implementados utilizando:
+- `Python 3.5.2`
+- Servidor de banco de dados `Mysql` versão `5.7.26-0ubuntu0.16.04.1 (Ubuntu)`
+- A execução foi realizada através dos softwares:
+  - `Konsole`, versão `16.04.3`
+  - `VIM - VI iMproved 8.1`
+- Sistema operacional `Linux Mint KDE`
+
+O sistema simula uma consulta simples a uma aplicação que mantém um registro de
+  saldo, um usuário e senha, conforme `MER` a baixo:
+
+![MER do banco de exemplo](proj_item_1/sql_model.png)
+
+## Instalação:
+
+Necessário haver disponível no sistema o `Python` e o gerenciador de pacotes
+`pip`. A instalação dos pacotes necessários é feita com os scrips `isntall.sh`
+e `install.bat` no diretório de cada item do projeto (necessário executar
+apenas uma vez). Nesses diretórios também se encontram os scripts para criação
+dos registros e tabelas necessárias à demonstração, bem como o modelo do banco
+utilizado.
+
+## Execução:
+
+O software é executado diretamente a partir do terminal, com o comando:
+
+```shell
+python3 saldo.py
+```
+
+O diretório de execução deve ser um dos diretórios dos itens.
+
+Será solicitado um Login e em seguida uma senha. Um par login e senha válidos
+é: `Rovigo`, `1234`. Exemplos de injeção de SQL seriam: Usuário `Rovigo';--`;
+Senha `' or '1'='1`;
+
+Os diferentes itens terão comportamentos distintos para casos de exceção.
+
+## Itens:
+
+### Item 1
 ![Tela do console, sql injection](proj_item_1/Evidencia.png)
 
 Foi utilizada a estratégia de SQL injection para fornecer uma consulta alteada.
@@ -19,7 +60,7 @@ select qt_saldo from saldos where ds_login = 'Rovigo';--' and ds_senha = '';
 Dessa forma, a consulta era realizada sem a validação da senha, o que
 representa uma falha na segurança.
 
-## Item 2
+### Item 2
 ![Tela do console, validação com white list](proj_item_2/Evidencia.png)
 
 Nesse caso, foi realizada a validação por meio de `white list`, isso é, se os
@@ -70,7 +111,7 @@ Ou
 > Senha inválido, apenas letras e caracteres especiais (!@#$%*()) (4-55)
 ```
 
-## Item 3
+### Item 3
 ![Tela do console, validação com consulta parametrizada](proj_item_3/Evidencia.png)
 
 Neste último caso, é realizada a consulta com parâmetros. Isso é, os valores
