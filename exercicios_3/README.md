@@ -28,7 +28,7 @@ Os diferentes itens terão comportamentos distintos para casos de exceção.
 ## Itens:
 
 ### Item 1
-![Tela do console + Navegador do arquivo, shell injection ](proj_item_1/Evidencia.png)
+![Tela do console + Navegador do arquivo, shell injection ](proj_item1/Evidencia.png)
 
 Foi utilizada a estratégia de shell injection para excluir uma determinada pasta.
 O trecho de código segue:
@@ -45,7 +45,7 @@ Dessa forma, ao criar uma pasta `pasta2`, será executada a exclusão da pasta
 `pasta1`.
 
 ### Item 2
-![Tela do console, validação com white list](proj_item_2/Evidencia.png)
+![Tela do console, validação com white list](proj_item2/Evidencia.png)
 
 Nesse caso, foi realizada a validação por meio de `white list`, isso é, se os
 parâmetros não estivessem adequadamente informados, não respeitando o que era
@@ -72,7 +72,7 @@ A passagem dos parâmetros errados resulta em uma mensagem:
 ```
 
 ### Item 3
-![Tela do console, com uso de API segura](proj_item_3/Evidencia.png)
+![Tela do console, com uso de API segura](proj_item3/Evidencia.png)
 
 Neste último caso, é realizada a execução com a API do python para construção
 de diretórios. Isso é, o nome informado pelo usuário é adequadamente tratado
