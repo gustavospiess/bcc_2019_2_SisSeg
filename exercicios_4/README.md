@@ -35,11 +35,11 @@ Os diferentes itens terão comportamentos distintos para casos de exceção.
 ## Itens:
 
 ### Item 1
-![Criação e leitura do arquivo TCC.txt pelo usuário Gustavo](proj_item1/Evidencia.png)
+![Criação e leitura do arquivo TCC.txt pelo usuário Gustavo](proj_item_1/Evidencia.png)
 
 Aqui temos o funcionamento padrão onde o usuário `gustavo` criou seu arquivo `TCC.txt`
 
-![Exemplo de exploração do Path Transversal no download](proj_item1/Evidencia2.png)
+![Exemplo de exploração do Path Transversal no download](proj_item_1/Evidencia2.png)
 
 Foi utilizado o caminho `../gustavo/TCC.txt` para que o usuário `rovigo` conseguisse ler
 o arquivo.
@@ -53,7 +53,7 @@ com o caminho para que o usuário possa baixar apenas seus arquivos.
 Porem ao ser utilizado `../gustavo/TCC.txt` o usuário está navegando para fora de sua pasta
 e entrando na pasta do outro usuário podendo ler o seu arquivo.
 
-![Exemplo de exploração do Path Transversal no upload](proj_item1/Evidencia3.png)
+![Exemplo de exploração do Path Transversal no upload](proj_item_1/Evidencia3.png)
 
 Nessa imagem temos o usuário `rovigo` apagando o conteúdo do arquivo do usuário `gustavo`
 Trecho do codigo:
@@ -67,7 +67,7 @@ navegar para fora de sua pasta
 
 
 ### Item 2
-![Correção realizada para que não seja possível visualizar a pasta do outro usuário](proj_item2/Evidencia.png)
+![Correção realizada para que não seja possível visualizar a pasta do outro usuário](proj_item_2/Evidencia.png)
 
 Nesse caso, foi colocado um hash para cada usuário através da `hashlib` assim ao usuário 
 tentar informar: `../gustavo/TCC.txt`, não será um caminho existente pois a pasta do 
