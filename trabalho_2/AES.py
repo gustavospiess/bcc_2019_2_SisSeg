@@ -3,6 +3,19 @@
 # word <- 4 bytes
 # rouend_key <- 4 words
 # key_list <- 11 round_keys
+# Box <- matrix 16 X 16
+
+
+S_BOX = None # TODO
+L_TABLE = None # TODO
+E_TABLE = None # TODO
+
+
+mul_matrix = [2, 1, 1, 3, 3, 2, 1, 1, 1, 3, 2, 1, 1, 1, 3, 2]
+# | 2 3 1 1 |
+# | 1 2 3 1 |
+# | 1 1 2 3 |
+# | 3 1 1 2 |
 
 
 def generate_round_keys(round_key_0): # recebe a primeira round key e retorna a lista com as 11
@@ -21,6 +34,13 @@ def generate_round_keys(round_key_0): # recebe a primeira round key e retorna a 
             w = xor(lw, ew)
             key_list[i*4+j] = w
     return key_list
+
+
+def apply_box(b1, box): # recebe uma byte e uma box, retorna uma word
+    """ROVIGO"""
+    p1 = b1 % 16 # parte menos significativa (4 bits a direita)
+    p2 = b1 - p1 # parte mais significativa (4 bits a esquerda)
+    return box[p1][p2]
 
 
 def generate_first_word(i, key_list): # recebe a lista de words e a posição da round key e retorna word
