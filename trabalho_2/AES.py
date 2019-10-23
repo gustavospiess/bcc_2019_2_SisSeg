@@ -128,8 +128,9 @@ def xor(w1, w2): # recebe duas words retorna word
 
 def rot_word(lw): # recebe word retorna word
     """ROVIGO"""
-    # TODO
-
+    lw.append(lw.pop(0))
+    return lw
+        
 
 def sub_word(rw): # recebe word retorna word
     """ROVIGO"""
@@ -147,4 +148,3 @@ def shift_rows(b): # recebe 4 words retorna 4 words
 def mix_columns(c): # recebe 4 words retorna words
     """SPIESS"""
     # TODO
-
