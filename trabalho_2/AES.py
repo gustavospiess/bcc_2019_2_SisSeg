@@ -45,8 +45,8 @@ def apply_box(b1, box): # recebe uma byte e uma box, retorna uma word
 
 def generate_first_word(i, key_list): # recebe a lista de words e a posição da round key e retorna word
     """ROVIGO"""
-    lw = None # TODO copiar última word da rq i - 1
-    fw = None # TODO copiar primeira word da rq i - 1
+    lw = key_list[(i-1)*4 + 3]
+    fw = key_list[(i-1)*4]
     rw = rot_word(lw)
     sw = sub_word(rw)
     rc = generate_round_constant(i)
