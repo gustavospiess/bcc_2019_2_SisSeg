@@ -19,7 +19,7 @@ mul_matrix = [2, 1, 1, 3, 3, 2, 1, 1, 1, 3, 2, 1, 1, 1, 3, 2]
 
 
 def generate_round_keys(round_key_0): # recebe a primeira round key e retorna a lista com as 11
-    """SPIESS"""
+    """generates the round_key list (44 words) from a initial 4 words"""
     key_list = [None for x in range(44)]
     key_list[0] = round_key_0[0]
     key_list[1] = round_key_0[1]
@@ -62,7 +62,7 @@ def cyfer(text, key_list):
         b = sub_bytes(a)
         c = shift_rows(b)
         d = mix_columns(c)
-        a = xor(d, key_list[i*4:i*4+3]
+        a = xor(d, key_list[i*4:i*4+3])
     b = sub_bytes(a)
     c = shift_rows(b)
     e = xor(c, key_list[-4:])
