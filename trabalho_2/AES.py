@@ -74,9 +74,9 @@ def generate_round_constant(i): # retorna word
     return [0, 0, 0, i]
 
 
-def xor(w1, w2): # recebe word retorna word
-    """r2 .. r3 SPIESS"""
-    # TODO
+def xor(w1, w2): # recebe duas words retorna word
+    """Xor operation for every pair w1i w2i"""
+    return [p1 ^ p2 for p1, p2 in zip(w1, w2)]
 
 
 def rot_word(lw): # recebe word retorna word
