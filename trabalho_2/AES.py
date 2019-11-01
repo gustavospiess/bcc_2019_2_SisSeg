@@ -104,12 +104,12 @@ def generate_first_word(i, key_list): # recebe a lista de words e a posição da
 
 def cyfer(text, key_list):
     """ROVIGO"""
-    a = xor(text, key_list[0:3])
+    a = xor(text, key_list[0] + key_list[1] + key_list[2] + key_list[3])
     for i in range(1, 9): # add round key
         b = sub_bytes(a)
         c = shift_rows(b)
         d = mix_columns(c)
-        a = xor(d, key_list[i*4:i*4+3])
+        a = xor(d, key_list[0+i*4] + key_list[1+i*4] + key_list[2+i*4] + key_list[3+i*4])
     b = sub_bytes(a)
     c = shift_rows(b)
     e = xor(c, key_list[-4:])
@@ -145,6 +145,17 @@ def shift_rows(b): # recebe 4 words retorna 4 words
     """ROVIGO"""
     # TODO
 
+
+# mul_matrix = [2, 1, 1, 3, 3, 2, 1, 1, 1, 3, 2, 1, 1, 1, 3, 2]
+# | 2 3 1 1 |
+# | 1 2 3 1 |
+# | 1 1 2 3 |
+# | 3 1 1 2 |
+
 def mix_columns(c): # recebe 4 words retorna words
+    """SPIESS"""
+    # TODO
+
+def galois(b-1, b2): # recebe 2 bytes retorna 1 byte
     """SPIESS"""
     # TODO
