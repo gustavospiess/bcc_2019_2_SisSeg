@@ -33,6 +33,7 @@ def main():
     params_File.write("Expoente da chave Privada:"+str(private_key_Exponent) + '\n')
     params_File.write("Expoente da chave Publica:"+str(public_key_Exponent) + '\n')
     params_File.write("Módulo:"+str(modulo) + '\n')
+    params_File.close()
     
 if __name__ == "__main__":
     main()
