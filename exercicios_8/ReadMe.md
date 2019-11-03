@@ -6,7 +6,7 @@ Os itens do trabalho foram implementados utilizando:
 - A execução foi realizada através do `Windows cmd`
 - Sistema operacional `Windows 10`
 
-O sistema possibilita criptografia de um arquivo pelo algoritmo AES, criptografa a chave do AES com a chave pública do Algoritmo RSA e possibilita descritografar o arquivo criptografado anteriormente, descriptografando a chave do AES e depois usando ela para descriptografar o arquivo.
+O sistema possibilita criptografia de um arquivo pelo algoritmo AES, criptografa a chave do AES com a chave pública do Algoritmo RSA e possibilita descriptografar o arquivo criptografado anteriormente, descriptografando a chave do AES e depois usando ela para descriptografar o arquivo.
 
 ## Execução:
 
@@ -36,13 +36,7 @@ J9NMdOMIAArY+25JAh5QtHnNRw83ndQIv0h6a8g8jYdyOtwEqZ1ENegnMWcCIhXn
 wYSCti+eX25au5pqjbQeOhQNYJJRZ2gRSEMsg4xHDXo=
 -----END RSA PRIVATE KEY-----
 ```
-`Public key`
-```
------BEGIN RSA PUBLIC KEY-----
-MEgCQQCJJr2eF5f44uGXejL3Y+zwpb9djBMLGJ/UDHgIOOHUtO/rA6EZDkTjF/LF
-2V/vxRX9t0knHqBkJvDbK6V0DSd7AgMBAAE=
------END RSA PUBLIC KEY-----
-```
+
 `publickey.txt`
 ```
 -----BEGIN RSA PUBLIC KEY-----
