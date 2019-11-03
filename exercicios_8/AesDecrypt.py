@@ -5,7 +5,7 @@ import pyaes
 with open('privateKey.txt', 'rb') as content_file: 
     private_key = content_file.read()
     
-#load the rsa public key from the content of the file
+#load the rsa private key from the content of the file
 rsa_private_key = rsa.PrivateKey.load_pkcs1(private_key)
 with open("AesKey.txt", 'rb') as content_file:
     aes_key_content = content_file.read()
