@@ -2,9 +2,12 @@ import pyaes
 import rsa
 
 key = "This_key_is__a__complete_mystery"
+#ask for the path of the file to be encrypted
 path = input("Type the path to the file to be encrypted: ")
+#read the file 
 with open(path, 'r') as content_file:
     content = content_file.read()
+#set encode the key
 key = key.encode('utf-8')
 
 aes = pyaes.AESModeOfOperationCTR(key)
@@ -13,8 +16,8 @@ aes = pyaes.AESModeOfOperationCTR(key)
 ciphertext = aes.encrypt(content)
 
 #write the encrypted text to the file
-with open(path, 'w') as content_file:
-    content_file.write(str(ciphertext))
+with open(path, 'wb') as content_file:
+    content_file.write(ciphertext)
     
 #set the AES key as the message to cypher with RSA
 message = key
@@ -30,5 +33,5 @@ rsa_public_key = rsa.PublicKey.load_pkcs1(public_key)
 crypto = rsa.encrypt(message, rsa_public_key)
 
 #write the encrypted key to a file
-with open('AesKey.txt', 'w') as content_file:
-    content_file.write(str(crypto))
+with open('AesKey.txt', 'wb') as content_file:
+    content_file.write(crypto)
