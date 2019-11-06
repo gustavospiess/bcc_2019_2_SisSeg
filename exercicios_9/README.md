@@ -12,9 +12,9 @@ O sistema possibilita a gerar o hash do conteúdo de um arquivo a partir.
 
 O software é executado a partir do arquivo `HashFunction.py` :
 Segue resultado da execução:
-![Resultado da execução](exercicios_9/Evidencia.png)
+![](Evidencia.png)
 
 ## Questão 2
 O software é executado a partir do arquivo `HashFunctionValidate.py` :
 Segue resultado da execução:
-![Resultado da execução](exercicios_9/Evidencia2.png)
+![](Evidencia2.png)
