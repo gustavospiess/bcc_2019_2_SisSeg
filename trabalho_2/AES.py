@@ -1,7 +1,7 @@
-
+from collections.abc import Iterable
 
 # word <- 4 bytes
-# rouend_key <- 4 words
+# round_key <- 4 words
 # key_list <- 11 round_keys
 # Box <- matrix 16 X 16
 
@@ -138,8 +138,8 @@ mul_matrix = [2, 1, 1, 3, 3, 2, 1, 1, 1, 3, 2, 1, 1, 1, 3, 2]
 
 
 def generate_round_keys(round_key_0): # recebe a primeira round key e retorna a lista com as 11
-    """generates the round_key list (44 words) from a initial 4 words"""
-    key_list = [None for x in range(44)]
+    """generates the round_key list (40 words) from a initial 4 words"""
+    key_list = [None for x in range(40)]
     key_list[0] = round_key_0[0]
     key_list[1] = round_key_0[1]
     key_list[2] = round_key_0[2]
@@ -147,7 +147,7 @@ def generate_round_keys(round_key_0): # recebe a primeira round key e retorna a 
     for i in range(1, 10):
         fw = generate_first_word(i, key_list)
         key_list[i*4] = fw
-        for j in range(1, 3):
+        for j in range(1, 4):
             lw = key_list[i*4 + j - 1]
             ew = key_list[i*4 + j - 4]
             w = xor(lw, ew)
@@ -156,7 +156,7 @@ def generate_round_keys(round_key_0): # recebe a primeira round key e retorna a 
 
 
 def apply_box(b1, box): # recebe uma byte e uma box, retorna uma word
-    """ROVIGO"""
+    """ROVIGO""" # pega a parte menos significativa e a parte mais significativa e busca a posição na box passada como parâmetro
     p1 = b1 % 16 # parte menos significativa (4 bits a direita)
     p2 = int((b1 - p1) / 16) # parte mais significativa (4 bits a esquerda)
     return box[p2+p1*16]
@@ -164,33 +164,39 @@ def apply_box(b1, box): # recebe uma byte e uma box, retorna uma word
 
 def generate_first_word(i, key_list): # recebe a lista de words e a posição da round key e retorna word
     """ROVIGO"""
-    lw = key_list[(i-1)*4 + 3]
-    fw = key_list[(i-1)*4]
-    rw = rot_word(lw)
-    sw = sub_word(rw)
-    rc = generate_round_constant(i)
-    result = xor(sw, rc)
-    result = xor(fw, result)
+    lw = key_list[(i-1)*4 + 3] # Acha a ultima palavra da posição atual
+    fw = key_list[(i-1)*4]  # Acha a primeira palavra da posição atual
+    rw = rot_word(lw) # executa rot_word passando a ultima palavra como parâmetro
+    sw = sub_word(rw) # executa sub_word passando o resultado do rot_word como parâmetro
+    rc = generate_round_constant(i) # gera a round constant
+    result = xor(sw, rc) # faz o xor do resultado do sub_word com a round constant 
+    result = xor(fw, result) # faz o xor da primeira palavra com o resultado obtido acima 
     return result
 
 
 def cyfer(text, key_list):
     """ROVIGO"""
-    a = xor(text, key_list[0] + key_list[1] + key_list[2] + key_list[3])
+    a = xor(text, key_list[0] + key_list[1] + key_list[2] + key_list[3]) # faz o xor do texto com as 4 primeiras posições
     for i in range(1, 9): # add round key
-        b = sub_bytes(a)
+        b = sub_bytes(a) 
         c = shift_rows(b)
         d = mix_columns(c)
-        a = xor(d, key_list[0+i*4] + key_list[1+i*4] + key_list[2+i*4] + key_list[3+i*4])
+        a = xor(d, key_list[0+i*4] + key_list[1+i*4] + key_list[2+i*4] + key_list[3+i*4]) # faz um xor com as 4 primeiras posições da rodada atual
     b = sub_bytes(a)
     c = shift_rows(b)
-    e = xor(c, key_list[-4:])
+
+    array = [] 
+    for i in range(len(key_list[-4:])): # transforma a lista de listas em uma lista só
+        for j in range(len(key_list[-4:][i])) :
+            array.append(key_list[-4:][i][j])
+            
+    e = xor(c, array) # faz um xor da lista transformada com o resultado obtido do shift rows acima
     return e
 
 
 def generate_round_constant(i): # retorna word
     """SPIESS"""
-    return [0, 0, 0, i]
+    return [0, 0, 0, i] # retorna a constante da rodada atual
 
 
 def xor(w1, w2): # recebe duas words retorna word
@@ -200,22 +206,37 @@ def xor(w1, w2): # recebe duas words retorna word
 
 def rot_word(lw): # recebe word retorna word
     """ROVIGO"""
-    lw.append(lw.pop(0))
+    lw.append(lw.pop(0)) # remove o primeiro byte e coloca para o final
     return lw
         
 
 def sub_word(rw): # recebe word retorna word
     """ROVIGO"""
-    return [apply_box(b, S_BOX) for b in rw]
+    if isinstance(rw, Iterable): # há momentos em que é recebido apenas um int para esses é necessário essa validação
+        return [apply_box(b, S_BOX) for b in rw] # aplica a S_BOX sobre a word recebida
+    else:
+        return apply_box(rw, S_BOX)
 
 
 def sub_bytes(a): # recebe 4 words retorna 4 words
     """SPIESS"""
-    return [sub_word(w) for w in a]
+    return [sub_word(w) for w in a] # chama o subword para cada word recebido
+
+
+
+shift_row_matrix = [0, 5, 10, 15, 4, 9, 14, 3, 8, 13, 2, 7, 12, 1, 6, 11]
+
+# 00  01  02  03
+# 11  12  13  10
+# 22  23  20  21
+# 33  30  13  32
+
+
+
 
 def shift_rows(b): # recebe 4 words retorna 4 words
     """ROVIGO"""
-    # TODO
+    return [b[x] for x in shift_row_matrix] # retorna os valores da matriz condizentes com as words recebidas
 
 
 def mix_columns(c): # recebe 4 words retorna words
