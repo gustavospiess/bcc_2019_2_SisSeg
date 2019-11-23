@@ -11,19 +11,20 @@ def main():
     round_key_list = generate_round_keys(round_key_0)
     
     path = input('Digite o caminho do arquivo a ser cifrado')
-    with open(path, 'r') as content_file: 
+    with open(path, 'rb') as content_file: 
         text = content_file.read()
+
+    binary = tuple(map(int, text))
         
-    text.encode('ascii')    
     n = 16
-    textList = [(text[i:i+n]) for i in range(0, len(text), n)] 
+    textList = [(binary[i:i+n]) for i in range(0, len(binary), n)] 
     if(len(textList[-1]) % 16 != 0):
         size = 16 - len(textList[-1])
         for i in range(size):
             textList[-1] += str(size)
         
     for i in range(len(textList)):
-       crypted += cyfer(textList[i].encode('ascii'),round_key_list)
+       crypted += cyfer(textList[i],round_key_list)
 
     path = input('escolha o nome do arquivo a ser gerado: \n')
     with open(path, 'wb') as content_file:

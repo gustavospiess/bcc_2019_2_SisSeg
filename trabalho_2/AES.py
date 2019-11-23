@@ -266,7 +266,7 @@ def galois(b1, b2): # recebe 2 bytes retorna 1 byte
 
     l1 = apply_box(b1, L_TABLE)
     l2 = apply_box(b2, L_TABLE)
-    s = l1+l2 % 256
+    s = (l1+l2) % 256
 
     e = apply_box(s, E_TABLE)
     return e
