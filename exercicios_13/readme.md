@@ -25,7 +25,7 @@ Para fazer a geração do hash utilizamos o algoritmo `Md5`
 Como Sal utilizamos as letras impares do login somado a uma constante pré-definada no arquivo com os fontes
 
 ## Item 3
-Segue imagem dos usuários, os usuários `Rovigo` e `Spiess` são usuários pré-definidos no script de criação da tabela os outros foram inseridos através da execução da opção '1'
+Segue imagem dos usuários, os usuários `Rovigo` e `Gustavo` são usuários pré-definidos no script de criação da tabela os outros foram inseridos através da execução da opção '1'
 ![](Evidencia.png)
 
 Segue imagem da tabela:   
